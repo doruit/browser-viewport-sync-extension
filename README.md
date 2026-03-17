@@ -24,7 +24,9 @@ When giving live demos of responsive web applications, you often want to show bo
 
 ## Demo
 
-> **Note**: Add screenshots or a demo GIF here showing the extension in action
+<video src="media/browser-viewport-sync-plugin.mp4" width="100%" controls>
+  Your browser does not support the video tag.
+</video>
 
 Perfect for:
 - 🎪 Live product demos
@@ -111,7 +113,7 @@ The system gracefully handles uncertain matches:
 
 1. **Download the latest release**
    - Go to [Releases](https://github.com/doruit/browser-viewport-sync-extension/releases)
-   - Download `responsive-demo-sync.zip`
+   - Download the latest ZIP file
    - Extract the ZIP file
 
 2. **Load in Chrome/Edge**
@@ -128,7 +130,7 @@ If you want to modify the extension or contribute:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/doruit/browser-viewport-sync-extension.git
-   cd responsive-demo-sync
+   cd browser-viewport-sync-extension
    ```
 
 2. **Install dependencies**
@@ -260,38 +262,18 @@ The extension is designed to handle:
 
 ```
 present-on-multiple-displays/
-├── src/
-│   ├── background/          # Service worker
-│   │   ├── index.ts         # Main background script
-│   │   ├── sessionStore.ts  # Sync session state
-│   │   └── messageRouter.ts # Message routing
-│   ├── content/             # Content scripts
-│   │   ├── index.ts         # Entry point
-│   │   ├── syncEngine.ts    # Main sync coordinator
-│   │   ├── blockExtractor.ts     # DOM block detection
-│   │   ├── blockFingerprint.ts   # Block fingerprinting
-│   │   ├── blockMatcher.ts       # Block matching algorithm
-│   │   ├── activeBlock.ts        # Active block detection
-│   │   ├── scrollContainer.ts    # Scroll container detection
-│   │   ├── domUtils.ts           # DOM utilities
-│   │   ├── debugOverlay.ts       # Debug visualization
-│   │   └── types.ts              # Content types
-│   ├── popup/               # Extension popup
-│   │   ├── popup.html
-│   │   ├── popup.css
-│   │   └── popup.ts
-│   └── shared/              # Shared code
-│       ├── models.ts        # Type definitions
-│       ├── messages.ts      # Message contracts
-│       ├── constants.ts     # Configuration
-│       └── utils.ts         # Utilities
-├── public/
-│   ├── manifest.json        # Extension manifest
-│   └── icons/               # Extension icons
-├── dist/                    # Build output (generated)
+├── src/                 # Extension source code
+│   ├── background/      # Service worker
+│   ├── content/         # Content scripts
+│   ├── popup/           # Extension popup
+│   └── shared/          # Shared utilities
+├── public/              # Static assets (manifest, icons)
+├── docs/                # Detailed documentation
+├── scripts/             # Build and utility scripts
+├── examples/            # Example pages for testing
+├── dist/                # Build output (generated)
 ├── package.json
 ├── tsconfig.json
-├── build.js                 # Build script
 └── README.md
 ```
 
