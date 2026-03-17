@@ -28,6 +28,8 @@ When giving live demos of responsive web applications, you often want to show bo
   Your browser does not support the video tag.
 </video>
 
+![Responsive Demo Sync in action](media/browser-viewport-sync-demo.gif)
+
 Perfect for:
 - 🎪 Live product demos
 - 📱 Responsive design presentations
