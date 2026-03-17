@@ -3,7 +3,6 @@ node_modules/
 
 # Build output
 dist/
-build/
 
 # Logs
 *.log
@@ -29,7 +28,6 @@ ehthumbs.db
 Thumbs.db
 
 # Extension package
-*.zip
 *.crx
 *.pem
 
