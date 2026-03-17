@@ -1,0 +1,38 @@
+{
+  "name": "browser-viewport-sync-extension",
+  "version": "1.0.0",
+  "description": "Smart cross-viewport demo synchronization for Chrome/Edge - Show desktop and mobile views side-by-side with intelligent scroll sync",
+  "main": "dist/background.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "clean": "rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doruit/browser-viewport-sync-extension.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "edge-extension",
+    "responsive",
+    "demo",
+    "sync",
+    "viewport",
+    "presentation",
+    "semantic-matching",
+    "scroll-sync",
+    "multi-display"
+  ],
+  "author": "Douwe van de Ruit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doruit/browser-viewport-sync-extension/issues"
+  },
+  "homepage": "https://github.com/doruit/browser-viewport-sync-extension#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  }
+}

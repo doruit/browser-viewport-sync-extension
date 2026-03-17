@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Demo Sync</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Responsive Demo Sync</h1>
+      <p class="subtitle">Smart cross-viewport synchronization</p>
+    </header>
+
+    <section class="tab-info">
+      <div class="info-row">
+        <span class="label">Current Tab:</span>
+        <span id="currentTabId" class="value">-</span>
+      </div>
+    </section>
+
+    <section class="tab-assignment">
+      <h2>Tab Assignment</h2>
+      <div class="button-group">
+        <button id="setDesktopBtn" class="btn btn-primary">Set as Desktop</button>
+        <button id="setMobileBtn" class="btn btn-primary">Set as Mobile</button>
+      </div>
+    </section>
+
+    <section class="session-status">
+      <h2>Session Status</h2>
+      <div class="status-grid">
+        <div class="status-item">
+          <span class="label">Desktop Tab:</span>
+          <span id="desktopTabId" class="value">-</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Mobile Tab:</span>
+          <span id="mobileTabId" class="value">-</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Master:</span>
+          <span id="masterTabId" class="value">-</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Sync Status:</span>
+          <span id="syncStatus" class="value status-badge">Disabled</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="master-selection">
+      <h2>Master Selection</h2>
+      <div class="button-group">
+        <button id="setDesktopMasterBtn" class="btn btn-secondary">Desktop is Master</button>
+        <button id="setMobileMasterBtn" class="btn btn-secondary">Mobile is Master</button>
+      </div>
+    </section>
+
+    <section class="sync-control">
+      <h2>Sync Control</h2>
+      <div class="button-group">
+        <button id="enableSyncBtn" class="btn btn-success">Enable Sync</button>
+        <button id="disableSyncBtn" class="btn btn-danger">Disable Sync</button>
+      </div>
+      <button id="refreshModelsBtn" class="btn btn-secondary full-width">Refresh Page Models</button>
+      <div class="info-note">
+        <small>💡 Navigation and scroll sync happen automatically</small>
+      </div>
+    </section>
+
+    <section class="sync-info">
+      <h2>Last Sync Event</h2>
+      <div class="info-box">
+        <div id="lastSyncSummary" class="summary">No sync events yet</div>
+        <div id="lastSyncTime" class="timestamp">-</div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="version">v1.0.0</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
