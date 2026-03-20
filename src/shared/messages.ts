@@ -2,6 +2,7 @@
  * Message type definitions for extension communication
  */
 
+export type { SyncPayload, PageModel, DiagnosticInfo, SyncSession };
 import type { SyncPayload, PageModel, DiagnosticInfo, SyncSession } from './models';
 
 // Popup -> Background messages
@@ -35,6 +36,8 @@ export type ContentMessage =
 export type BackgroundMessage =
   | { type: 'PAGE_MODEL_BUILT'; model: PageModel }
   | { type: 'SCROLL_EVENT'; payload: SyncPayload }
+  | { type: 'INPUT_EVENT'; payload: SyncPayload }
+  | { type: 'CLICK_EVENT'; payload: SyncPayload }
   | { type: 'DIAGNOSTICS'; info: DiagnosticInfo }
   | { type: 'CONTENT_READY' }
   | { type: 'ERROR'; message: string };

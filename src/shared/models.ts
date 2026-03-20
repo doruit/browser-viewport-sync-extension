@@ -50,14 +50,33 @@ export interface ActiveBlockState {
   globalProgress: number;
 }
 
-export interface SyncPayload {
-  type: 'scroll_sync';
+export interface InputSyncPayload {
+  type: 'input_sync';
   sourceTabId: number;
   timestamp: number;
-  activeBlock: ActiveBlockState;
-  fallbackMode: 'semantic' | 'order' | 'global';
-  confidence: number;
+  selector: string;
+  value: string;
+  checked?: boolean;
 }
+
+export interface ClickSyncPayload {
+  type: 'click_sync';
+  sourceTabId: number;
+  timestamp: number;
+  selector: string;
+}
+
+export type SyncPayload = 
+  | {
+      type: 'scroll_sync';
+      sourceTabId: number;
+      timestamp: number;
+      activeBlock: ActiveBlockState;
+      fallbackMode: 'semantic' | 'order' | 'global';
+      confidence: number;
+    }
+  | InputSyncPayload
+  | ClickSyncPayload;
 
 export interface PageModel {
   blocks: BlockFingerprint[];

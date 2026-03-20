@@ -5,11 +5,15 @@
 import type { ContentMessage, SyncPayload } from '../shared/messages';
 import type { BlockMatch, PageModel } from '../shared/models';
 import { SyncEngine } from './syncEngine';
+import { InputSync } from './inputSync';
+import { ClickSync } from './clickSync';
 import { DebugOverlay } from './debugOverlay';
 import { matchBlocks } from './blockMatcher';
 
 // Global state
 let syncEngine: SyncEngine | null = null;
+let inputSync: InputSync | null = null;
+let clickSync: ClickSync | null = null;
 let debugOverlay: DebugOverlay | null = null;
 let remotePageModel: PageModel | null = null;
 
@@ -21,6 +25,22 @@ function init(): void {
 
   // Create sync engine
   syncEngine = new SyncEngine();
+  
+  // Create input sync
+  inputSync = new InputSync((payload) => {
+    chrome.runtime.sendMessage({
+      type: 'INPUT_EVENT',
+      payload,
+    });
+  });
+
+  // Create click sync
+  clickSync = new ClickSync((payload) => {
+    chrome.runtime.sendMessage({
+      type: 'CLICK_EVENT',
+      payload,
+    });
+  });
 
   // Create debug overlay (hidden by default)
   debugOverlay = new DebugOverlay();
@@ -81,6 +101,23 @@ chrome.runtime.onMessage.addListener((message: ContentMessage, sender, sendRespo
  * Handle sync application from remote tab
  */
 function handleApplySync(payload: SyncPayload, masterPageModel: PageModel): void {
+  // Handle input sync
+  if (payload.type === 'input_sync') {
+    if (inputSync) {
+      inputSync.applySync(payload);
+    }
+    return;
+  }
+
+  // Handle click sync
+  if (payload.type === 'click_sync') {
+    if (clickSync) {
+      clickSync.applySync(payload);
+    }
+    return;
+  }
+
+  // Handle scroll sync
   if (!syncEngine) return;
 
   // Get local page model

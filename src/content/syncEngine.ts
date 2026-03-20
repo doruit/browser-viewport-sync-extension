@@ -141,6 +141,8 @@ export class SyncEngine {
    * Apply sync from another tab
    */
   applySync(payload: SyncPayload, matches: Map<string, BlockMatch>): void {
+    if (payload.type !== 'scroll_sync') return;
+    
     console.log('[SyncEngine] Applying sync:', payload);
 
     this.isApplyingSync = true;

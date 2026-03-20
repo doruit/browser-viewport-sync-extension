@@ -77,6 +77,11 @@ export class MessageRouter {
       case 'SCROLL_EVENT':
         await this.handleScrollEvent(message.payload, tabId);
         break;
+      
+      case 'INPUT_EVENT':
+      case 'CLICK_EVENT':
+        await this.handleInteractionEvent(message.payload, tabId);
+        break;
 
       case 'PAGE_MODEL_BUILT':
         console.log('[Background] Page model built for tab', tabId, ':', message.model.blocks.length, 'blocks');
@@ -131,8 +136,38 @@ export class MessageRouter {
     });
 
     // Update session summary
-    const summary = `${payload.fallbackMode} sync (conf: ${payload.confidence.toFixed(2)})`;
-    this.sessionStore.updateSyncSummary(summary);
+    if (payload.type === 'scroll_sync') {
+      const summary = `${payload.fallbackMode} sync (conf: ${payload.confidence.toFixed(2)})`;
+      this.sessionStore.updateSyncSummary(summary);
+    }
+  }
+
+  /**
+   * Handle interaction event (input/click) from master tab and forward to follower
+   */
+  private async handleInteractionEvent(payload: SyncPayload, sourceTabId: number): Promise<void> {
+    if (!this.sessionStore.isEnabled()) return;
+    if (!this.sessionStore.isMaster(sourceTabId)) return;
+
+    const followerTabId = this.sessionStore.getFollowerTab(sourceTabId);
+    if (!followerTabId) return;
+
+    // Get master page model (even if not strictly needed for selector, good for context)
+    const masterPageModel = this.sessionStore.getPageModel(sourceTabId);
+    if (!masterPageModel) return;
+
+    // Forward sync payload to follower tab
+    await this.sendToTab(followerTabId, {
+      type: 'APPLY_SYNC',
+      payload,
+      masterPageModel,
+    });
+
+    if (payload.type === 'input_sync') {
+      this.sessionStore.updateSyncSummary(`input sync: ${payload.selector}`);
+    } else if (payload.type === 'click_sync') {
+      this.sessionStore.updateSyncSummary(`click sync: ${payload.selector}`);
+    }
   }
 
   /**
