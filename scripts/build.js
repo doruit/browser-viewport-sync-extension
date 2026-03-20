@@ -8,13 +8,13 @@ const path = require('path');
 
 const isWatch = process.argv.includes('--watch');
 
-// Ensure dist directory exists
-if (!fs.existsSync('dist')) {
-  fs.mkdirSync('dist', { recursive: true });
+// Ensure build directory exists
+if (!fs.existsSync('build')) {
+  fs.mkdirSync('build', { recursive: true });
 }
 
-if (!fs.existsSync('dist/icons')) {
-  fs.mkdirSync('dist/icons', { recursive: true });
+if (!fs.existsSync('build/icons')) {
+  fs.mkdirSync('build/icons', { recursive: true });
 }
 
 // Build configuration
@@ -32,17 +32,17 @@ const builds = [
   {
     ...buildConfig,
     entryPoints: ['src/background/index.ts'],
-    outfile: 'dist/background.js',
+    outfile: 'build/background.js',
   },
   {
     ...buildConfig,
     entryPoints: ['src/content/index.ts'],
-    outfile: 'dist/content.js',
+    outfile: 'build/content.js',
   },
   {
     ...buildConfig,
     entryPoints: ['src/popup/popup.ts'],
-    outfile: 'dist/popup.js',
+    outfile: 'build/popup.js',
   },
 ];
 
@@ -74,17 +74,17 @@ function copyFile(src, dest) {
 
 function copyStaticFiles() {
   // Copy manifest
-  copyFile('public/manifest.json', 'dist/manifest.json');
+  copyFile('public/manifest.json', 'build/manifest.json');
 
   // Copy popup HTML and CSS
-  copyFile('src/popup/popup.html', 'dist/popup.html');
-  copyFile('src/popup/popup.css', 'dist/popup.css');
+  copyFile('src/popup/popup.html', 'build/popup.html');
+  copyFile('src/popup/popup.css', 'build/popup.css');
 
   // Copy icon files
   const iconSizes = [16, 48, 128];
   iconSizes.forEach(size => {
     const srcPath = `public/icons/icon${size}.svg`;
-    const destPath = `dist/icons/icon${size}.svg`;
+    const destPath = `build/icons/icon${size}.svg`;
     if (fs.existsSync(srcPath)) {
       copyFile(srcPath, destPath);
     } else {

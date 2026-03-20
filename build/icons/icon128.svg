@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" fill="#3498db"/>
+  <g transform="translate(64, 64)">
+    <!-- Desktop icon -->
+    <rect x="-44.8" y="-32" width="38.4" height="25.6" fill="white" stroke="white" stroke-width="2.56"/>
+    <!-- Mobile icon -->
+    <rect x="6.4" y="-32" width="19.2" height="32" fill="white" stroke="white" stroke-width="2.56" rx="1.28"/>
+    <!-- Sync arrows -->
+    <path d="M -19.2 12.8 L 6.4 12.8" stroke="white" stroke-width="3.84" fill="none" marker-end="url(#arrow)"/>
+    <path d="M 6.4 25.6 L -19.2 25.6" stroke="white" stroke-width="3.84" fill="none" marker-end="url(#arrow2)"/>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="white" />
+    </marker>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M9,0 L9,6 L0,3 z" fill="white" />
+    </marker>
+  </defs>
+</svg>

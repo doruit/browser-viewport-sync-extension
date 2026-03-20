@@ -2,11 +2,11 @@
   "name": "browser-viewport-sync-extension",
   "version": "1.0.0",
   "description": "Smart cross-viewport demo synchronization for Chrome/Edge - Show desktop and mobile views side-by-side with intelligent scroll sync",
-  "main": "dist/background.js",
+  "main": "build/background.js",
   "scripts": {
     "build": "node scripts/build.js",
     "watch": "node scripts/build.js --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist build"
   },
   "repository": {
     "type": "git",
